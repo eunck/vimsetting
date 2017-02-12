@@ -107,12 +107,16 @@ set foldnestmax=1
 filetype on
 syntax on
 
-" theme solarized
+" colorscheme
 syntax enable
-colorschem solarized
-let g:solarized_termcolors=256
-"let g:solarized_termtrans = 1
-set background=dark
+try
+    colorscheme solarized
+    let g:solarized_termcolors=256
+    "let g:solarized_termtrans = 1
+    set background=dark
+catch
+    colorscheme ron
+endtry
 
 " cursor
 "hi CursorLine	cterm=NONE ctermbg=blue ctermfg=white guibg=blue guifg=white
