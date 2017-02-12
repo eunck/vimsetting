@@ -4,7 +4,7 @@ echo "> download vundle"
 if [ -d "$PWD/.vim/bundle/vundle" ]; then
 	echo "> skip"
 else
-	git clone https://github.com/gmarik/vundle.git $PWD/.vim/bundle/vundle
+	git clone https://github.com/VundleVim/Vundle.vim.git $PWD/.vim/bundle/Vundle.vim
 fi
 
 echo "> Link .vimrc"

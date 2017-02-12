@@ -1,3 +1,59 @@
+" @auther Changki Eun
+" @email eunckck@gamil.com
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" vim
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'L9'
+Plugin 'bling/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'AutoComplPop' " alternative YouCompleteMe
+Plugin 'grep.vim'
+Plugin 'ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'FuzzyFinder'
+Plugin 'The-NERD-tree'
+Plugin 'The-NERD-Commenter'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'godlygeek/tabular'
+"Plugin 'surround.vim'
+"Plugin 'https://github.com/wesleyche/SrcExpl'
+
+" c
+"Plugin 'vim-syntastic/syntastic'
+
+" cpp
+Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'OmniCppComplete'
+
+" html
+Plugin 'rstacruz/sparkup'
+
+" js
+Plugin 'pangloss/vim-javascript'
+Plugin 'jelera/vim-javascript-syntax'
+
+" rails
+Plugin 'tpope/vim-rails.git'
+
+" tizen
+"Plugin 'edc-support'
+
+" YouCompleteMe
+" refer https://github.com/Valloric/YouCompleteMe
+" run './install.py --clang-completer'
+Plugin 'Valloric/YouCompleteMe'
+
+call vundle#end()
+filetype plugin indent on
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Recognize the platform
 function! GetRunningOS()
@@ -32,12 +88,10 @@ if os=~"win"
 	set clipboard=unnamed
 endif
 
-set tags+=./tags
-
 " common
 set tabstop=4
 set shiftwidth=4
-set expandtab " tap->spaces
+set expandtab
 set smarttab
 set smartindent
 set autoindent
@@ -48,52 +102,29 @@ set hlsearch
 set showmatch
 set mouse=a
 set fencs=usc-bom,utf-8,cp949
-set nocompatible
 set foldnestmax=1
 
 filetype on
 syntax on
+
+" theme solarized
 syntax enable
-colorschem ron
+colorschem solarized
+let g:solarized_termcolors=256
+"let g:solarized_termtrans = 1
+set background=dark
 
-" auto save & load
-"autocmd BufWinLeave *.* mkview
-"autocmd BufWinEnter *.* silent loadview
-
-hi CursorLine	cterm=NONE ctermbg=blue ctermfg=white guibg=blue guifg=white
+" cursor
+"hi CursorLine	cterm=NONE ctermbg=blue ctermfg=white guibg=blue guifg=white
 set cursorline
 "hi CursorColumn	cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "set cursorcolumn
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Plugin 'gmarik/vundle'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'tpope/vim-rails.git'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'fugitive.vim'
-Plugin 'L9'
-Plugin 'FuzzyFinder'
-Plugin 'The-NERD-tree'
-Plugin 'The-NERD-Commenter'
-Plugin 'AutoComplPop'
-Plugin 'Tagbar'
-Plugin 'grep.vim'
-Plugin 'ctrlp.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'godlygeek/tabular'
-"Plugin 'edc-support' " for Tizen development
-"Plugin 'bling/vim-airline'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'surround.vim'
-"Plugin 'https://github.com/wesleyche/SrcExpl'
-"Plugin 'OmniCppComplete'
-"Plugin 'Syntastic'
+set colorcolumn=81
 
-filetype plugin indent on
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" auto save & load
+"autocmd BufWinLeave *.* mkview
+"autocmd BufWinEnter *.* silent loadview
 
 " key maps
 map <C-n> :tabnew<CR>
@@ -101,6 +132,11 @@ map <C-n> :tabnew<CR>
 "nnoremap <C-j> :m .+1<CR>
 "vnoremap <C-j> :m '>+1<CR>gv=gv
 "vnoremap <C-K> :m '<-2<CR>gv=gv
+
+" grep
+let g:Grep_Skip_files='tags'
+let g:Grep_Skip_Dirs='boost .git CMakeFiles'
+map <F2> :Rgrep -I --exclude="tags"<CR><CR><CR><CR>
 
 " NERDtree
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -113,35 +149,23 @@ else
 	map <F3> :NERDTreeToggle<CR>
 endif
 
-" NerdCommenter
-if os=~"linux" " TODO
-	map <C-_> <plug>NERDCommenterToggle
-	map <Leader>? <plug>NERDCommenterInvert
-else
-	map <C-_> <plug>NERDCommenterToggle
-	map <Leader>? <plug>NERDCommenterInvert
-endif
-
 " Tagbar
 let g:tagbar_width=30
 map <F4> :TagbarToggle<CR>
 
-" grep
-let g:Grep_Skip_files='tags'
-let g:Grep_Skip_Dirs='boost .git CMakeFiles'
-map <F2> :Rgrep -I --exclude="tags"<CR><CR><CR><CR>
-
 " ctrlp
-let g:ctrlp_custom_ignore={'dir': '\v[\/](boost)$',}
-map <C-p>1 <ESC>:CtrlPMixed<CR>
-map <C-p>2 <ESC>:CtrlPBuffer<CR>
+let g:ctrlp_custom_ignore = {'dir': '\v[\/](boost)$',}
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+"map <C-p>1 <ESC>:CtrlPMixed<CR>
+"map <C-p>2 <ESC>:CtrlPBuffer<CR>
 
 " FuzzyFinder
 "map <C-p>1 <ESC>:FufCoverageFile!<CR>
 "map <C-p>2 <ESC>:FufBuffer!<CR>
-map <C-p>3 <ESC>:FufChangeList!<CR>
-map <C-p>4 <ESC>:FufLine!<CR>
-map <C-p>5 <ESC>:FufJumpList!<CR>
+"map <C-p>3 <ESC>:FufChangeList!<CR>
+"map <C-p>4 <ESC>:FufLine!<CR>
+"map <C-p>5 <ESC>:FufJumpList!<CR>
 
 " cpp
 let g:cpp_class_scope_highlight = 1
@@ -151,5 +175,7 @@ let g:cpp_experimental_template_highlight = 1
 "augroup filetypedetect
 	"au BufNewFile,BufRead *.edc setfiletype edc
 "augroup END
+
+set tags+=./tags
 
 " EOF
