@@ -13,7 +13,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 Plugin 'bling/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'AutoComplPop' " alternative YouCompleteMe
 Plugin 'grep.vim'
 Plugin 'ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
@@ -25,6 +24,10 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'godlygeek/tabular'
 "Plugin 'surround.vim'
 "Plugin 'https://github.com/wesleyche/SrcExpl'
+
+" auto complete alternatives
+Plugin 'AutoComplPop'
+"Plugin 'Valloric/YouCompleteMe' " refer https://github.com/Valloric/YouCompleteMe
 
 " c
 "Plugin 'vim-syntastic/syntastic'
@@ -45,11 +48,6 @@ Plugin 'tpope/vim-rails.git'
 
 " tizen
 "Plugin 'edc-support'
-
-" YouCompleteMe
-" refer https://github.com/Valloric/YouCompleteMe
-" run './install.py --clang-completer'
-Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on
