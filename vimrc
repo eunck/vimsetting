@@ -89,7 +89,7 @@ endif
 " common
 set tabstop=4
 set shiftwidth=4
-set expandtab
+"set expandtab
 set smarttab
 set smartindent
 set autoindent
@@ -101,6 +101,8 @@ set showmatch
 set mouse=a
 set fencs=usc-bom,utf-8,cp949
 set foldnestmax=1
+set listchars=tab:→\ ,trail:•
+set list
 
 filetype on
 syntax on
@@ -118,11 +120,11 @@ endtry
 
 " cursor
 "hi CursorLine	cterm=NONE ctermbg=blue ctermfg=white guibg=blue guifg=white
-set cursorline
+"set cursorline
 "hi CursorColumn	cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "set cursorcolumn
 
-set colorcolumn=81
+"set colorcolumn=81
 
 " auto save & load
 "autocmd BufWinLeave *.* mkview
@@ -179,5 +181,3 @@ let g:cpp_experimental_template_highlight = 1
 "augroup END
 
 set tags+=./tags
-
-" EOF
